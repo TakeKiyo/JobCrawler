@@ -3,15 +3,16 @@ import requests
 import urllib.request, urllib.error
 from lxml import html
 import pandas as pd
+import time
 allList = []
 
-data = urllib.request.urlopen("https://www.wantedly.com/projects?type=mixed&page=1&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=internship&keywords%5B%5D=%E6%9C%AA%E7%B5%8C%E9%A8%93")
+data = urllib.request.urlopen("https://www.wantedly.com/projects?type=mixed&page=1&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=internship&fields%5B%5D=jp__web_engineer")
 
 soup_parsed_data = BeautifulSoup(data, 'html.parser')
 totalNum = int(soup_parsed_data.find('span',class_='total').text)
 firstURL = "https://www.wantedly.com/projects?type=mixed&page="
-LastURL = "&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=internship&keywords%5B%5D=%E6%9C%AA%E7%B5%8C%E9%A8%93"
-# for i in range(1,24):
+LastURL = "&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=internship&fields%5B%5D=jp__web_engineer"
+
 for i in range(1,int((totalNum/10)+2)):
     tmpURL = firstURL + str(i) + LastURL
     data = urllib.request.urlopen(tmpURL)
@@ -23,9 +24,11 @@ for i in range(1,int((totalNum/10)+2)):
         tmpList.append(CompanyList[j].h3.a.text)
         tmpList.append("https://www.wantedly.com/"+URLList[j].a["href"])
         tmpList.append(URLList[j].a.text)
-        tmpList.append("未経験")
         tmpList.append("")
+        tmpList.append(("Web"))
         allList.append(tmpList)
+    time.sleep(3)
+    print("取得件数: "+ str(len(allList)))
 print("総取得件数: "+ str(len(allList)))
-df = pd.DataFrame(allList,columns=["会社名","URL","タイトル","経験","技術領域"])
-df.to_csv("unexperienced.csv")
+df = pd.DataFrame(allList,tmpList.append(URLList[j].a.text))
+df.to_csv("domain_web.csv")
