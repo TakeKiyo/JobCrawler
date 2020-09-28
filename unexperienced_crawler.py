@@ -23,7 +23,7 @@ for i in range(1,int((totalNum/10)+2)):
         tmpList.append(CompanyList[j].h3.a.text)
         tmpList.append("https://www.wantedly.com/"+URLList[j].a["href"])
         tmpList.append(URLList[j].a.text)
-        tmpList.append("未経験")
+        tmpList.append("未経験可")
         tmpList.append("")
         tmpList.append("実務経験")
         allList.append(tmpList)

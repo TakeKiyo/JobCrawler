@@ -29,8 +29,6 @@ for i in range(1,int((totalNum/10)+2)):
         allList.append(tmpList)
     time.sleep(3)
     print("取得件数: "+ str(len(allList)))
-    if len(allList) > 10:
-        break
 print("総取得件数: "+ str(len(allList)))
 df = pd.DataFrame(allList,columns=["会社名","URL","タイトル","経験","技術領域","形式"])
 df.to_csv("domain_mobile.csv")
