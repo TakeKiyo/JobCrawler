@@ -27,7 +27,7 @@ for file in file_path_list:
             #engineer_internsに登録
             cur.execute("INSERT INTO engineer_interns (title, content, company, entry_button_url, created, modified) values (%s, %s, %s, %s,%s,%s)",(row[4],row[9],row[2],row[3],time.strftime('%Y-%m-%d %H:%M:%S'),time.strftime('%Y-%m-%d %H:%M:%S')))
             conn.commit()
-            cur.execute("SELECT last_insert_id() FROM gs_recruiting_item_experiences")
+            cur.execute("SELECT last_insert_id() FROM engineer_interns")
             engineer_intern_id = cur.fetchone()[0]
 
             #engineer_intern_experiencesに登録
