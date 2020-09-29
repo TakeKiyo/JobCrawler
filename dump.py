@@ -13,9 +13,9 @@ conn.ping(reconnect=True)
 print("接続: "+str(conn.is_connected()))
 
 experience_word = ["未経験可","Web開発経験","スマホアプリ開発経験","競プロ経験"]
-technology_word  = ["C","C++","C#","Java","Go","Ruby","Python","Javascript","Typescript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native"]
+technology_word  = ["C","C++","C#","Java","Go","Ruby","Python","JavaScript","TypeScript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native","Docker","Kubernetes"]
 style_word = ["実務経験","体験"]
-domain_word = ["バックエンド","フロントエンド","インフラ","iOS","Android"]
+domain_word = ["サーバー","フロント","インフラ","iOS","Android","Web"]
 
 file_path_list = ["output/infra.csv","output/mobile.csv","output/web.csv"]
 for file in file_path_list:

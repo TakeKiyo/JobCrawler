@@ -6,8 +6,8 @@ import time
 import MeCab
 import pandas as pd
 
-TechnologyList = ["C","C++","C#","Java","Go","Ruby","Python","Javascript","Typescript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native"]
-domainList = ["バックエンド","フロントエンド","インフラ","iOS","android"]
+TechnologyList = ["C","C++","C#","Java","Go","Ruby","Python","JavaScript","TypeScript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native","Docker","Kubernetes"]
+domainList = ["サーバー","フロント","インフラ","iOS","Android","Web"]
 OutputList = []
 
 df = pd.read_csv("unexperienced.csv")
