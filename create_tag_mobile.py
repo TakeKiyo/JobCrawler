@@ -7,7 +7,7 @@ import MeCab
 import pandas as pd
 
 TechnologyList = ["C","C++","C#","Java","Go","Ruby","Python","Javascript","Typescript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native"]
-domainList = ["バックエンド","フロントエンド","インフラ","iOS","android"]
+domainList = ["バックエンド","フロントエンド","インフラ","iOS","Android"]
 OutputList = []
 
 df = pd.read_csv("domain_mobile.csv")
@@ -76,7 +76,6 @@ for row in df.itertuples():
                     tech += ","
                 tech += str(commonTech[i])
         OutputList.append([row[2],row[3],row[4],row[5],domain,row[7],tech,t])
-        break
 df = pd.DataFrame(OutputList,columns=["会社名","URL","タイトル","経験","技術領域","形式","言語タグ","本文"])
 df.to_csv("output/mobile.csv",encoding='utf_8_sig')
 
