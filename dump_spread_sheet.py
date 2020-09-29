@@ -13,7 +13,7 @@ conn = mysql.connector.connect(
 conn.ping(reconnect=True)
 print("接続: "+str(conn.is_connected()))
 
-df = pd.read_csv("output/unexperienced.csv")
+df = pd.read_csv("output/spread_sheet.csv")
 experience_word = ["未経験可","Web開発経験","スマホアプリ開発経験","競プロ経験"]
 technology_word  = ["C","C++","C#","Java","Go","Ruby","Python","Javascript","Typescript","React","Vue","jQuery","Rails","Django","fortran","Swift","Kotlin","React Native"]
 style_word = ["実務経験","体験"]
@@ -23,7 +23,7 @@ cur = conn.cursor(buffered=True)
 for row in df.itertuples():
     try:
         #engineer_internsに登録
-        cur.execute("INSERT INTO engineer_interns (title, content, company, entry_button_url, created, modified) values (%s, %s, %s, %s,%s,%s)",(row[4],row[9],row[2],row[3],time.strftime('%Y-%m-%d %H:%M:%S'),time.strftime('%Y-%m-%d %H:%M:%S')))
+        cur.execute("INSERT INTO engineer_interns (title, content, company, entry_deadline, entry_button_url, created, modified) values (%s, %s, %s, %s, %s,%s,%s)",(row[4],row[9],row[2],row[10],row[3],time.strftime('%Y-%m-%d %H:%M:%S'),time.strftime('%Y-%m-%d %H:%M:%S')))
         conn.commit()
         cur.execute("SELECT last_insert_id() FROM gs_recruiting_item_experiences")
         engineer_intern_id = cur.fetchone()[0]
