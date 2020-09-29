@@ -12,7 +12,7 @@ OutputList = []
 
 df = pd.read_csv("2020夏のITエンジニアインターンの情報が集まる魔法のスプレッドシート - 2020.csv")
 idx = 0
-for row in df.itertuples():     
+for row in df.itertuples():    
     if idx != 0:
         m = MeCab.Tagger()
         nouns = [line.split("\t")[0] for line in m.parse(str(row[3])).splitlines()]
@@ -30,9 +30,9 @@ for row in df.itertuples():
                 if i != 0:
                     tech += ","
                 tech += str(commonTech[i])
-        OutputList.append([row[1],row[11],row[2],"",domain,"体験",tech,row[3]])
+        OutputList.append([row[1],row[11],row[2],"",domain,"体験",tech,row[3],row[8]])
     idx += 1
-df = pd.DataFrame(OutputList,columns=["会社名","URL","タイトル","経験","技術領域","形式","言語タグ","本文"])
+df = pd.DataFrame(OutputList,columns=["会社名","URL","タイトル","経験","技術領域","形式","言語タグ","本文","応募締切"])
 df.to_csv("output/spread_sheat.csv",encoding='utf_8_sig')
 
 
