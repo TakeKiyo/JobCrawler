@@ -28,6 +28,9 @@ for row in df.itertuples():
         cur.execute("SELECT last_insert_id() FROM engineer_interns")
         engineer_intern_id = cur.fetchone()[0]
 
+        #インターンタグを追加
+        cur.execute("INSERT INTO engineer_intern_tags (engineer_intern_id, tag, created) VALUES (%s, %s, %s)", (engineer_intern_id, 1, time.strftime('%Y-%m-%d %H:%M:%S')))
+
         #engineer_intern_experiencesに登録
         if type(row[5]) != float: #nanの判定
             cur.execute("INSERT INTO engineer_intern_experiences (engineer_intern_id, experience) VALUES (%s, %s)", (engineer_intern_id, experience_word.index(row[5])+1))
@@ -49,8 +52,6 @@ for row in df.itertuples():
                 cur.execute("INSERT INTO engineer_intern_domains (engineer_intern_id, domain) VALUES (%s, %s)", (engineer_intern_id, domain_word.index(item)+1))
 
         conn.commit()
-        break
     except:
         conn.rollback()
         raise
-    break

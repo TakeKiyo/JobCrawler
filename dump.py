@@ -1,5 +1,6 @@
 import mysql.connector
 import pandas as pd 
+import time
 
 # コネクションの作成
 conn = mysql.connector.connect(
@@ -30,6 +31,15 @@ for file in file_path_list:
             cur.execute("SELECT last_insert_id() FROM engineer_interns")
             engineer_intern_id = cur.fetchone()[0]
 
+            #インターンタグを追加
+            cur.execute("INSERT INTO engineer_intern_tags (engineer_intern_id, tag, created) VALUES (%s, %s, %s)", (engineer_intern_id, 1, time.strftime('%Y-%m-%d %H:%M:%S')))
+
+            #スマホとwebのタグを追加
+            if file == "output/mobile.csv":
+                cur.execute("INSERT INTO engineer_intern_tags (engineer_intern_id, tag, created) VALUES (%s, %s, %s)", (engineer_intern_id, 6, time.strftime('%Y-%m-%d %H:%M:%S')))
+            if file == "output/web.csv":
+                cur.execute("INSERT INTO engineer_intern_tags (engineer_intern_id, tag, created) VALUES (%s, %s, %s)", (engineer_intern_id, 5, time.strftime('%Y-%m-%d %H:%M:%S')))
+            
             #engineer_intern_experiencesに登録
             if type(row[5]) != float: #nanの判定
                 cur.execute("INSERT INTO engineer_intern_experiences (engineer_intern_id, experience) VALUES (%s, %s)", (engineer_intern_id, experience_word.index(row[5])+1))
