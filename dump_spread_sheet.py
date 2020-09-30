@@ -23,6 +23,8 @@ cur = conn.cursor(buffered=True)
 for row in df.itertuples():
     try:
         #engineer_internsに登録
+        if type(row[9])==float or type(row[4])==float or type(row[10])==float or type(row[2])==float or type(row[3])==float:
+            continue
         cur.execute("INSERT INTO engineer_interns (title, content, company, entry_deadline, entry_button_url, created, modified) values (%s, %s, %s, %s, %s,%s,%s)",(row[4],row[9],row[2],row[10],row[3],time.strftime('%Y-%m-%d %H:%M:%S'),time.strftime('%Y-%m-%d %H:%M:%S')))
         conn.commit()
         cur.execute("SELECT last_insert_id() FROM engineer_interns")
